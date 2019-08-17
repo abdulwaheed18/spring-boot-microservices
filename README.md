@@ -8,3 +8,4 @@ Mircoservices using Spring Boot
   
 ## 2. price-service
       Simple Web application exposing one rest API.
+      URL: http://localhost:7002/prices/{id}
