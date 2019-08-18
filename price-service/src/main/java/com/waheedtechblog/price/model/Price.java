@@ -13,6 +13,7 @@ import lombok.Data;
 public class Price {
 
 	private String id;
+	private String productId;
 	private double amount;
 	private Currency currency;
 
@@ -22,6 +23,14 @@ public class Price {
 
 	public void setId(String id) {
 		this.id = id;
+	}
+
+	public String getProductId() {
+		return productId;
+	}
+
+	public void setProductId(String productId) {
+		this.productId = productId;
 	}
 
 	public double getAmount() {
@@ -42,6 +51,7 @@ public class Price {
 
 	@Override
 	public String toString() {
-		return "Price [id=" + id + ", amount=" + amount + ", currency=" + currency + "]";
+		return "Price [id=" + id + ", productId=" + productId + ", amount=" + amount + ", currency=" + currency + "]";
 	}
+
 }

@@ -3,6 +3,8 @@
  */
 package com.waheedtechblog.price.controller;
 
+import java.util.Collection;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -27,6 +29,11 @@ public class PriceController {
 	@GetMapping("/{id}")
 	public ResponseEntity<Price> getPrice(@PathVariable String id) {
 		return ResponseEntity.ok(priceService.getPrice(id));
+	}
+
+	@GetMapping()
+	public ResponseEntity<Collection<Price>> get() {
+		return ResponseEntity.ok(priceService.get());
 	}
 
 }

@@ -1,5 +1,7 @@
 package com.waheedtechblog.price.service;
 
+import java.util.Collection;
+
 import com.waheedtechblog.price.model.Price;
 
 /**
@@ -17,4 +19,11 @@ public interface PriceService {
 	 * @return price detail
 	 */
 	public Price getPrice(String id);
+
+	/**
+	 * Returns all the price.
+	 * 
+	 * @return list of all price
+	 */
+	public Collection<Price> get();
 }
