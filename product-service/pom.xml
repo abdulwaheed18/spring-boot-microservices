@@ -21,7 +21,7 @@
 	</properties>
 
 	<dependencies>
-	
+
 		<!-- Optional. Application health monitor check -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
@@ -58,6 +58,12 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
+		</dependency>
+
+		<!-- To register this application as a Eureka Client -->
+		<dependency>
+			<groupId>org.springframework.cloud</groupId>
+			<artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>
 		</dependency>
 	</dependencies>
 

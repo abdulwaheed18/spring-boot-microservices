@@ -80,7 +80,8 @@ public class ProductServiceImpl implements ProductService {
 	}
 
 	private String getPriceUrl(String priceId) {
-		return "http://" + priceServiceUrl + "prices/" + priceId;
+		// return "http://" + priceServiceUrl + "prices/" + priceId;
+		return "http://price-service/prices/" + priceId;
 	}
 
 }
