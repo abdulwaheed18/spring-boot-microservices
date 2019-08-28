@@ -23,5 +23,7 @@ public interface ProductService {
 	 * @return Product Detail
 	 */
 	public Optional<Product> getProduct(String productId);
+	
+	public Optional<Product> getProductUsingFeignClient(String productId);
 
 }

@@ -14,6 +14,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
 import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
+import com.waheedtechblog.product.config.ProductFiegnClient;
 import com.waheedtechblog.product.exception.ProductNotFoundException;
 import com.waheedtechblog.product.model.Price;
 import com.waheedtechblog.product.model.Product;
@@ -42,6 +43,9 @@ public class ProductServiceImpl implements ProductService {
 	@Autowired
 	private PriceCacheRepository priceCacheRepository;
 
+	@Autowired
+	private ProductFiegnClient productFiegnClient;
+
 	private static final org.slf4j.Logger logger = LoggerFactory.getLogger(ProductServiceImpl.class);
 
 	/*
@@ -59,6 +63,26 @@ public class ProductServiceImpl implements ProductService {
 		ResponseEntity<Price> priceEntity = restTemplate.getForEntity(getPriceUrl(productId), Price.class);
 		if (priceEntity.getStatusCode() == HttpStatus.OK) {
 			Price price = priceEntity.getBody();
+			product.get().setCurrency(price.getCurrency());
+			product.get().setPrice(price.getAmount());
+		}
+		return product;
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * com.waheedtechblog.product.service.ProductService#getProductUsingFeignClient(
+	 * java.lang.String)
+	 */
+	@Override
+	public Optional<Product> getProductUsingFeignClient(String productId) {
+		logger.info("Fiegn: Get Product detail for product id: {}", productId);
+		Optional<Product> product = Optional.ofNullable(productRepository.getProduct(productId));
+		product.orElseThrow(() -> new ProductNotFoundException("Product Id not Found: " + productId));
+		Price price = productFiegnClient.getPrice(productId);
+		if (price != null) {
 			product.get().setCurrency(price.getCurrency());
 			product.get().setPrice(price.getAmount());
 		}
