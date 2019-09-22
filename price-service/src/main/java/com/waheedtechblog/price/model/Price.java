@@ -3,6 +3,8 @@
  */
 package com.waheedtechblog.price.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import lombok.Data;
 
 /**
@@ -13,6 +15,8 @@ import lombok.Data;
 public class Price {
 
 	private String id;
+	
+	@JsonIgnore
 	private String productId;
 	private double amount;
 	private Currency currency;

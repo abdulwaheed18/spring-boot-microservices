@@ -16,6 +16,9 @@
 	<modules>
 		<module>product-service</module>
 		<module>price-service</module>
+		<module>discovery-server</module>
+		<module>feign-client</module>
+		<module>api-gateway</module>
 	</modules>
 	
 </project>

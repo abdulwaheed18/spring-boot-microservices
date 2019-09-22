@@ -10,7 +10,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.waheedtechblog.product.model.Product;
 import com.waheedtechblog.product.service.ProductService;
-import com.waheedtechblog.product.service.ProductServiceImpl;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -22,7 +21,7 @@ public class ProductController {
 	@Autowired
 	private ProductService productService;
 
-	private static final org.slf4j.Logger logger = LoggerFactory.getLogger(ProductServiceImpl.class);
+	private static final org.slf4j.Logger logger = LoggerFactory.getLogger(ProductController.class);
 
 	@GetMapping("/{id}")
 	public ResponseEntity<Product> getProduct(@PathVariable String id) {
