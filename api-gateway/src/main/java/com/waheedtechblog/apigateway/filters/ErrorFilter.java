@@ -3,7 +3,7 @@ package com.waheedtechblog.apigateway.filters;
 import com.netflix.zuul.ZuulFilter;
 
 public class ErrorFilter extends ZuulFilter {
- 
+	
   @Override
   public String filterType() {
     return "error";
@@ -23,6 +23,8 @@ public class ErrorFilter extends ZuulFilter {
   public Object run() {
    System.out.println("Inside Route Filter");
  
+  // tracer.currentSpan().context().traceId();
+  // trace.
     return null;
   }
 }

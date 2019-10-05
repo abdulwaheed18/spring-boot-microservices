@@ -9,6 +9,8 @@ import org.springframework.cloud.openfeign.EnableFeignClients;
 import org.springframework.context.annotation.Bean;
 import org.springframework.web.client.RestTemplate;
 
+import brave.sampler.Sampler;
+
 @SpringBootApplication
 @EnableCircuitBreaker
 @EnableHystrixDashboard
@@ -24,5 +26,22 @@ public class ProductServiceApplication {
 	public RestTemplate restTemplate() {
 		return new RestTemplate();
 	}
+	
+	@Bean
+	public Sampler defaultSampler() {
+		return ALWAYS_SAMPLE;
+	}
+
+	private static final Sampler ALWAYS_SAMPLE = new Sampler() {
+		@Override
+		public boolean isSampled(long traceId) {
+			return true;
+		}
+
+		@Override
+		public String toString() {
+			return "AlwaysSample";
+		}
+	};
 
 }
